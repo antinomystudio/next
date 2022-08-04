@@ -8,8 +8,8 @@ import styles from 'styles/pages/about.module.scss'
 const About = ({ style }, ref) => {
   const el = useRef()
 
-  const animateIn = useCallback(() => {
-    console.log('About:animateIn', el.current)
+  const animateIn = useCallback(({ from }) => {
+    console.log('About:animateIn', { from })
     return gsap.timeline({
       paused: true,
       defaults: {
@@ -28,8 +28,8 @@ const About = ({ style }, ref) => {
     }, 0).restart()
   })
 
-  const animateOut = useCallback(() => {
-    console.warn('About:animateOut', el.current)
+  const animateOut = useCallback(({ to }) => {
+    console.warn('About:animateOut', { to })
     gsap.timeline({
       paused: true,
       defaults: {

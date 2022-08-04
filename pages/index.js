@@ -6,8 +6,8 @@ import { forwardRef, useRef, useCallback, useImperativeHandle } from 'react'
 const Home = ({ style }, ref) => {
   const el = useRef()
 
-  const animateIn = useCallback(() => {
-    console.log('Index:animateIn', el.current)
+  const animateIn = useCallback(({ from }) => {
+    console.log('Index:animateIn', { from })
     return gsap.timeline({
       paused: true,
       defaults: {
@@ -26,8 +26,8 @@ const Home = ({ style }, ref) => {
     }, 0).restart()
   })
 
-  const animateOut = useCallback(() => {
-    console.warn('Index:animateOut', el.current)
+  const animateOut = useCallback(({ to }) => {
+    console.warn('Index:animateOut', { to })
     gsap.timeline({
       paused: true,
       defaults: {
