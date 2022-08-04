@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { gsap } from 'gsap'
 import { Link } from 'components/link'
-import { forwardRef, useRef, useCallback, useImperativeHandle, useLayoutEffect } from 'react'
+import { forwardRef, useRef, useCallback, useImperativeHandle } from 'react'
 
 import styles from 'styles/pages/about.module.scss'
 
