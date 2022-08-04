@@ -1,0 +1,16 @@
+.u-overflow {
+  overflow: hidden;
+}
+
+.u-abs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.u-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

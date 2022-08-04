@@ -1,0 +1,88 @@
+@import 'fonts.scss';
+@import 'reset.scss';
+@import 'utils.scss';
+
+:root {
+  --layout-margin: 25px;
+
+  @include res('sm') {
+    --layout-margin: 45px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: $font;
+  font-size: 100%;
+  user-select: none;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  font-feature-settings: 'liga' off;
+  overscroll-behavior: none;
+
+  &.--locked {
+    overflow: hidden;
+  }
+
+  &.--progress {
+    cursor: progress;
+
+    * {
+      cursor: progress;
+    }
+  }
+}
+
+body {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.25rem;
+  overscroll-behavior: none;
+}
+
+#__next,
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page {
+  display: block;
+  width: 100%;
+}
+
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+}
+
+h1 {
+  margin: 70px 0 0;
+}
+
+p {
+  margin: 40px 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  line-height: 1.5;
+}

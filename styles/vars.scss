@@ -1,0 +1,52 @@
+@use "sass:math";
+
+/*
+* Fonts
+*/
+$helvetica: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font: $helvetica;
+
+/*
+* Sizes
+*/
+@function px($size) {
+  @return math.div($size, 16) * 1rem;
+}
+
+/*
+* Breakpoints
+*/
+$xs: px(320);
+$sm: px(700);
+$md: px(1024);
+$lg: px(1800);
+
+@mixin res($class) {
+  @if $class ==xs {
+    @media (min-width: $xs) {
+      @content;
+    }
+  }
+
+  @else if $class ==sm {
+    @media (min-width: $sm) {
+      @content;
+    }
+  }
+
+  @else if $class ==md {
+    @media (min-width: $md) {
+      @content;
+    }
+  }
+
+  @else if $class ==lg {
+    @media (min-width: $lg) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "responsive mixin supports: xs, sm, md, lg";
+  }
+}
