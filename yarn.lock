@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@antinomy-studio/sniffer@^4.0.3":
+  "integrity" "sha512-HXBFIpZKATHuzJufihMtem/hjrnXRjAmhqzDh22eMkqVuq5hI2WpiTLc2dImDXZ5ehPOabOK2vB2LfvACtiFcQ=="
+  "resolved" "https://npm.pkg.github.com/download/@antinomy-studio/sniffer/4.0.3/394bcca2d94655d194f4adad0635a4a860624bda"
+  "version" "4.0.3"
+
 "@babel/runtime-corejs3@^7.10.2":
   "integrity" "sha512-qZEWeccZCrHA2Au4/X05QW5CMdm4VjUDCrGq5gf1ZDcM4hRqreKrtwAn7yci9zfgAS9apvnsFXiGBHBAxZdK9A=="
   "resolved" "https://registry.npmjs.org/@babel/runtime-corejs3/-/runtime-corejs3-7.18.9.tgz"
