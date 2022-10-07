@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, cloneElement, Fragment } from 'react'
 
 function Transition({ Component }) {
   const current = useRef()
@@ -10,7 +10,8 @@ function Transition({ Component }) {
 
   useEffect(() => {
     if (!Component) return
-    if (components[0].render.displayName === Component.render.displayName) return
+    if (components[0].render.displayName === Component.render.displayName)
+      return
     setComponents((data) => [data[0], Component])
   }, [Component])
 
@@ -18,7 +19,8 @@ function Transition({ Component }) {
     if (components.length === 1 && lifecycle === 'starting') {
       window.scrollTo(0, 0)
     }
-    if (components.length === 1 && lifecycle !== 'starting') return setLifecycle('resting')
+    if (components.length === 1 && lifecycle !== 'starting')
+      return setLifecycle('resting')
     if (lifecycle === 'transitioning' || components.length < 1) return
     setLifecycle('transitioning')
     onAnimationStart()
@@ -35,7 +37,7 @@ function Transition({ Component }) {
     const to = components[1].render.displayName
     Promise.all([
       current.current.animateOut({ from, to }),
-      next.current.animateIn({ from, to })
+      next.current.animateIn({ from, to }),
     ]).then(() => {
       onAnimationEnded({ scrollTo: true })
     })
@@ -53,23 +55,25 @@ function Transition({ Component }) {
 
   const getHeight = () => {
     return {
-      height: lifecycle === 'transitioning' ? `${height.current}px` : null
+      height: lifecycle === 'transitioning' ? `${height.current}px` : null,
     }
   }
 
   const getPosition = (id) => {
     if (lifecycle === 'transitioning') {
-      return (id === 0) ? {
-        position: 'relative',
-        zIndex: 2
-      } : {
-        position: 'fixed',
-        top: 0,
-        zIndex: 3
-      }
+      return id === 0
+        ? {
+            position: 'relative',
+            zIndex: 2,
+          }
+        : {
+            position: 'fixed',
+            top: 0,
+            zIndex: 3,
+          }
     } else {
       return {
-        position: 'static'
+        position: 'static',
       }
     }
   }
@@ -80,12 +84,15 @@ function Transition({ Component }) {
         {components.map((Page, id) => {
           return (
             Page !== null && (
-              <Page
-                key={id}
-                ref={(node) => (id === 0 ? (current.current = node) : (next.current = node))}
-                style={getPosition(id)}
-                {...Page.props}
-              />
+              <Fragment key={Page.render.displayName}>
+                <Page
+                  ref={(node) =>
+                    id === 0 ? (current.current = node) : (next.current = node)
+                  }
+                  style={getPosition(id)}
+                  {...Page.props}
+                />
+              </Fragment>
             )
           )
         })}

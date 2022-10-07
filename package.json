@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@antinomy-studio/size": "^3.0.1",
-    "@antinomy-studio/sniffer": "^4.0.3",
     "classnames": "^2.3.1",
     "gsap": "^3.10.4",
     "next": "12.2.2",
