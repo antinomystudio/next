@@ -4,7 +4,7 @@ import Transition from 'components/transition'
 
 import '../styles/base.scss'
 
-function App({ Component }) {
+function App({ Component, pageProps }) {
   useFoucFix()
 
   return (
@@ -15,7 +15,7 @@ function App({ Component }) {
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Transition Component={Component} />
+      <Transition Component={Component} pageProps={pageProps} />
     </>
   )
 }

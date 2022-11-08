@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect, cloneElement, Fragment } from 'react'
+import { useRef, useState, useEffect, Fragment } from 'react'
 
-function Transition({ Component }) {
+function Transition({ Component, pageProps }) {
   const current = useRef()
   const next = useRef()
   const height = useRef()
@@ -9,10 +9,15 @@ function Transition({ Component }) {
   const [lifecycle, setLifecycle] = useState('starting')
 
   useEffect(() => {
+    Component.pageProps = pageProps
+  }, [])
+
+  useEffect(() => {
     if (!Component) return
     if (components[0].render.displayName === Component.render.displayName)
       return
     setComponents((data) => [data[0], Component])
+    Component.pageProps = pageProps
   }, [Component])
 
   useEffect(() => {
@@ -84,13 +89,13 @@ function Transition({ Component }) {
         {components.map((Page, id) => {
           return (
             Page !== null && (
-              <Fragment key={Page.render.displayName}>
+              <Fragment key={Page.render ? Page.render.displayName : Page.displayName}>
                 <Page
                   ref={(node) =>
                     id === 0 ? (current.current = node) : (next.current = node)
                   }
                   style={getPosition(id)}
-                  {...Page.props}
+                  {...Page.pageProps}
                 />
               </Fragment>
             )
