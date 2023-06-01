@@ -8,9 +8,7 @@ function Transition({ Component, pageProps }) {
   const [components, setComponents] = useState([Component])
   const [lifecycle, setLifecycle] = useState('starting')
 
-  useEffect(() => {
-    Component.pageProps = pageProps
-  }, [])
+  if (!Component.pageProps) Component.pageProps = pageProps
 
   useEffect(() => {
     if (!Component) return
@@ -89,7 +87,9 @@ function Transition({ Component, pageProps }) {
         {components.map((Page, id) => {
           return (
             Page !== null && (
-              <Fragment key={Page.render ? Page.render.displayName : Page.displayName}>
+              <Fragment
+                key={Page.render ? Page.render.displayName : Page.displayName}
+              >
                 <Page
                   ref={(node) =>
                     id === 0 ? (current.current = node) : (next.current = node)
