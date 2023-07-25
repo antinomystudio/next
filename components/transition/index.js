@@ -5,12 +5,11 @@ function Transition({ Component, pageProps }) {
   const next = useRef()
   const height = useRef()
 
-  const [components, setComponents] = useState([Component])
-  const [lifecycle, setLifecycle] = useState('starting')
-
-  useEffect(() => {
+  const [components, setComponents] = useState(() => {
     Component.pageProps = pageProps
-  }, [])
+    return [Component]
+  })
+  const [lifecycle, setLifecycle] = useState('starting')
 
   useEffect(() => {
     if (!Component) return
